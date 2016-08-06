@@ -16,10 +16,10 @@ import java.util.Random;
 public class GroupCacheFactory {
 
 	// 数据容器
-	private Map<String, Object> container;
+	private Map<String, Group> container;
 
 	public GroupCacheFactory() {
-		container = new LinkedHashMap<String, Object>();
+		container = new LinkedHashMap<String, Group>();
 	}
 
 	/**
@@ -30,11 +30,8 @@ public class GroupCacheFactory {
 	 */
 	public Group group(String key, int capacity) {
 
-		Group group = null;
-		Object entry = container.get(key);
-		if (entry != null) {
-			group = (Group) entry;
-		} else {
+		Group group = container.get(key);
+		if (group == null) {
 			group = new Group(capacity);
 			container.put(key, group);
 		}
@@ -56,11 +53,11 @@ public class GroupCacheFactory {
 	public static void main(String[] args) {
 
 		GroupCacheFactory factory = new GroupCacheFactory();
-		Group group = factory.group("abc",1000);
-		for(int i=0;i<1000;i++){
+		Group group = factory.group("abc", 1000);
+		for (int i = 0; i < 1000; i++) {
 			group.push(String.valueOf(i), i, new Random().nextInt(100));
 		}
-		
+
 		for (int i = 0; i < 150; i++) {
 			System.out.println(group.getKeys());
 			try {
@@ -69,34 +66,34 @@ public class GroupCacheFactory {
 				e.printStackTrace();
 			}
 		}
-		
-//		group.push("one", "你好", 15);
-//		group.push("t", "tt", 3);
-//		group.push("长期", "长期有效", 1);
 
-//		for (int i = 0; i < 20; i++) {
-//			System.out.println(group.ttl("abc"));
-//			System.out.println(group.getKeys());
-//			System.out.println(group.getValues());
-//			if(i==3){
-//				group.expire("abc", 10);
-//			}
-//			try {
-//				Thread.sleep(1000);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		for (int i = 0; i < 20; i++) {
-//			Integer value=(Integer)group.pop();
-//			group.push(value.toString(), value);
-//			System.out.println(group.getKeys());
-//			try {
-//				Thread.sleep(1000);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		// group.push("one", "你好", 15);
+		// group.push("t", "tt", 3);
+		// group.push("长期", "长期有效", 1);
+
+		// for (int i = 0; i < 20; i++) {
+		// System.out.println(group.ttl("abc"));
+		// System.out.println(group.getKeys());
+		// System.out.println(group.getValues());
+		// if(i==3){
+		// group.expire("abc", 10);
+		// }
+		// try {
+		// Thread.sleep(1000);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		// }
+		// for (int i = 0; i < 20; i++) {
+		// Integer value=(Integer)group.pop();
+		// group.push(value.toString(), value);
+		// System.out.println(group.getKeys());
+		// try {
+		// Thread.sleep(1000);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// }
+		// }
 
 	}
 }
