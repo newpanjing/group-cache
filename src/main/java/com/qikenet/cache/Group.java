@@ -249,7 +249,7 @@ public class Group {
 	 */
 	public int size() {
 
-		return queue.size();
+		return getCacheEntitys().size();
 	}
 
 	/**
