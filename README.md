@@ -4,6 +4,7 @@
 #####GroupCacheFactory 工厂用于获取Group
 #####Group 组，存放多个key和value
 #####CacheEntity 缓存实体，所有缓存的数据都是以CacheEntity为载体放入Group中
+#官网 http://www.qikenet.com
 #测试代码： 
 package com.qikenet.cache;
 
