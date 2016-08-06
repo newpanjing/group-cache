@@ -19,16 +19,16 @@ public class CacheEntity implements Serializable {
 
 	private Long timestamp;// 缓存的时候存的时间戳，用来计算该元素是否过期
 
-	private int expire = 0; // 默认长期有效
+	private int seconds = 0; // 默认长期有效
 
 	private Group group;// 容器
 
-	public CacheEntity(String key, Object value, Long timestamp, int expire, Group group) {
+	public CacheEntity(String key, Object value, Long timestamp, int seconds, Group group) {
 		super();
 		this.key = key;
 		this.value = value;
 		this.timestamp = timestamp;
-		this.expire = expire;
+		this.seconds = seconds;
 		this.group = group;
 	}
 
@@ -62,16 +62,16 @@ public class CacheEntity implements Serializable {
 		this.value = value;
 	}
 
-	public int getExpire() {
+	
+	public void setSeconds(int seconds) {
 
-		return expire;
+		this.seconds = seconds;
 	}
+	
+	public int getSeconds() {
 
-	public void setExpire(int expire) {
-
-		this.expire = expire;
+		return seconds;
 	}
-
 	/**
 	 * 获取剩余时间
 	 * 
@@ -79,10 +79,10 @@ public class CacheEntity implements Serializable {
 	 */
 	public int ttl() {
 
-		if (this.expire == 0) {
-			return this.expire;
+		if (this.seconds == 0) {
+			return this.seconds;
 		}
-		return this.expire - getTime();
+		return this.seconds - getTime();
 	}
 	
 	/**
@@ -91,8 +91,8 @@ public class CacheEntity implements Serializable {
 	 */
 	private int getTime() {
 
-		if (this.expire == 0) {
-			return this.expire;
+		if (this.seconds == 0) {
+			return this.seconds;
 		}
 		Long current = System.currentTimeMillis();
 		Long value = current - this.timestamp;
@@ -106,10 +106,10 @@ public class CacheEntity implements Serializable {
 	 */
 	public boolean isExpire() {
 
-		if (this.expire == 0) {
+		if (this.seconds == 0) {
 			return true;
 		}
-		if (getTime() > this.expire) {
+		if (getTime() > this.seconds) {
 			// 失效了就移除
 			group.delete(key);
 			return false;

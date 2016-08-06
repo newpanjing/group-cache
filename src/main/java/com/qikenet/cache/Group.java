@@ -217,7 +217,7 @@ public class Group {
 		CacheEntity entity = find(key);
 		if (entity != null) {
 			entity.setTimestamp(System.currentTimeMillis());
-			entity.setExpire(second);
+			entity.setSeconds(second);
 		}
 	}
 
