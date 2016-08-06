@@ -2,7 +2,6 @@ package com.qikenet.cache;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * 简单的内存缓存实现，实现group概念，<br/>
