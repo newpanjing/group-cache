@@ -28,14 +28,15 @@ public class GroupCacheFactory {
 	 * @return
 	 */
 	public Group group(String key, int capacity) {
-
-		Group group = container.get(key);
-		if (group == null) {
-			group = new Group(capacity);
-			container.put(key, group);
+		//加同步，否则可能引起线程问题
+		synchronized (container) {
+			Group group = container.get(key);
+			if (group == null) {
+				group = new Group(capacity);
+				container.put(key, group);
+			}
+			return group;
 		}
-
-		return group;
 	}
 
 	/**
