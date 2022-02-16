@@ -1,11 +1,18 @@
 # group-cache
-简单的内存缓存实现，实现group概念，一个group里面是个有序的集合，集合支持key-value expire弥补redis list的不足
+简单的内存缓存实现，实现`group`概念，一个`group`里面是个有序的集合，集合支持`key-value`、`expire`弥补redis list的不足
+
 ##总共有3个类：
-#####GroupCacheFactory 工厂用于获取Group
-#####Group 组，存放多个key和value
-#####CacheEntity 缓存实体，所有缓存的数据都是以CacheEntity为载体放入Group中
-#官网 http://www.qikenet.com
-#测试代码： 
+
+- `GroupCacheFactory` 工厂用于获取Group
+- `Group` 组，存放多个key和value
+- `CacheEntity` 缓存实体，所有缓存的数据都是以CacheEntity为载体放入Group中
+
+## 博客
+[https://www.88cto.com](https://www.88cto.com)
+
+## 测试代码： 
+
+```java
 package com.qikenet.cache;
 
 import java.util.Random;
@@ -79,3 +86,4 @@ public class CacheTest {
 		
 	}
 }
+```
