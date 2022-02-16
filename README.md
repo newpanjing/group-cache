@@ -1,7 +1,7 @@
 # group-cache
 简单的内存缓存实现，实现`group`概念，一个`group`里面是个有序的集合，集合支持`key-value`、`expire`弥补redis list的不足
 
-##总共有3个类：
+## 总共有3个类：
 
 - `GroupCacheFactory` 工厂用于获取Group
 - `Group` 组，存放多个key和value
